@@ -1,0 +1,22 @@
+<p>
+  <strong><%= Product.human_attribute_name :name %>:</strong>
+  <%= @product.name %>
+</p>
+
+<p>
+  <strong><%= Product.human_attribute_name :price %>:</strong>
+  <%= @product.price %>
+</p>
+
+<p>
+  <strong><%= Product.human_attribute_name :stock %>:</strong>
+  <%= @product.stock %>
+</p>
+
+<p>
+  <strong><%= Product.human_attribute_name :note %>:</strong>
+  <%= @product.note %>
+</p>
+
+<%= link_to 'Edit', edit_product_path(@product) %> |
+<%= link_to 'Back', products_path %>

@@ -1,0 +1,48 @@
+<h1><%= Product.model_name.human %></h1>
+
+<div class="text-right">
+  <%= link_to '追加', new_product_path, class: 'btn btn-primary' %>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th><%= Product.human_attribute_name :image %></th>
+        <th><%= Product.human_attribute_name :name %></th>
+        <th><%= Product.human_attribute_name :price %></th>
+        <th><%= Product.human_attribute_name :stock %></th>
+        <th><%= Product.human_attribute_name :note %></th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+	<tbody>
+		<% if @products.count <= @images.count %>
+			<% cnt = @products.count %>
+		<% else %>
+			<% cnt = @images.count %>
+		<% end %>
+      <% for i in 1..cnt do %>
+        <tr>
+			<td><%= image_tag show_image_image_path(@images[i-1]), :size => "256x256" %></td>
+			<td><%= link_to '画像削除', @images[i-1], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
+</div>
+          <td><%= @products[i-1].name %></td>
+          <td><%= @products[i-1].price %></td>
+          <td><%= @products[i-1].stock %></td>
+          <td><%= @products[i-1].note %></td>
+          <td><%= link_to '表示', @products[i-1], class: 'btn btn-default' %></td>
+          <td><%= link_to '編集', edit_product_path(@products[i-1]), class: 'btn btn-default' %></td>
+          <td><%= link_to '削除', @products[i-1], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
+		</tr>
+		<% end %>
+	</tbody>
+  </table>
+  <p>
+	<%= form_for(@image) do |f| %>
+  	<%= f.file_field :file,accept: "image/jpeg" %>
+	<%= f.submit "アップロードする" %>
+	<% end %>
+  </p>
+
